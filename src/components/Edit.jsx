@@ -42,7 +42,6 @@ function Edit() {
   };
 
   return (
-    <>
       <>
         <div
           ref={editRef}
@@ -96,7 +95,6 @@ function Edit() {
           </div>
         </div>
       </>
-    </>
   );
 }
 

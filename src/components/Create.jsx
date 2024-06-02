@@ -48,7 +48,6 @@ function createWindow() {
   };
 
   return (
-    <>
       <>
         <div
           ref={createRef}
@@ -102,7 +101,6 @@ function createWindow() {
           </div>
         </div>
       </>
-    </>
   );
 }
 
