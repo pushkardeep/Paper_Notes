@@ -22,9 +22,23 @@ function Edit() {
     });
   });
 
+  const onUnMount = () => {
+    gsap.to(editRef.current, {
+      opacity: 0,
+      scale: 0,
+      duration: 0.4,
+      onComplete: () => {
+        dispatch(toogleEdit());
+      },
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    updateNotes(noteData, dispatch, token, navigate);
+  const result = await updateNotes(noteData, dispatch, token, navigate);
+  if(result){
+    onUnMount()
+  }
   };
 
   return (
@@ -66,9 +80,7 @@ function Edit() {
               ></textarea>
               <div className="w-full flex justify-end gap-2 items-center">
                 <h1
-                  onClick={() => {
-                    dispatch(toogleEdit());
-                  }}
+                  onClick={onUnMount}
                   className="text-[#000000] cursor-pointer bg-white px-2 py-1 font-semibold rounded-md"
                 >
                   Cancel

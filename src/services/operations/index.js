@@ -64,6 +64,7 @@ const createNotes = async (formData, dispatch, token, navigate) => {
     } else if (data.success === false) {
       dispatch(toogleLoading());
       navigate("/error");
+      return false;
     }
   } catch (error) {
     dispatch(toogleLoading());
@@ -105,9 +106,9 @@ const updateNotes = async (updatedData, dispatch, token, navigate) => {
     );
 
     if (data.success) {
-      dispatch(toogleEdit());
       dispatch(toogleLoading());
       dispatch(editNote(data.updatedNote));
+      return true;
     } else if (data.success === false) {
       dispatch(toogleLoading());
       navigate("/error");
