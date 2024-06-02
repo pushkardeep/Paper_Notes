@@ -33,7 +33,7 @@ function Navbar() {
       <div className="w-full h-fit relative flex items-center justify-between">
         <img
           className="w-[80px] sm:w-[100px] aspect-square object-cover"
-          src="src/assets/Logo.png"
+          src="src/assets/static/images/Logo.png"
           alt="Logo"
         />
 
