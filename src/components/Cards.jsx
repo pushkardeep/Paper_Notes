@@ -58,13 +58,13 @@ function Cards() {
           </h1>
         )}
 
-        <div className="grid min-h-0 w-fit auto-rows-auto py-7 gap-3 px-2 max-h-[70vh] mx-auto overflow-y-auto min-[300px]:grid-cols-2 min-[420px]:grid-cols-3 min-[560px]:grid-cols-4 min-[725px]:grid-cols-5 min-[860px]:grid-cols-6 min-[1000px]:grid-cols-7 min-[1145px]:grid-cols-8">
+        <div className="grid min-h-0 w-fit auto-rows-auto py-7 gap-6 sm:gap-3 px-5 sm:px-2 max-h-[70vh] mx-auto overflow-y-auto min-[350px]:grid-cols-2 min-[510px]:grid-cols-3 min-[635px]:grid-cols-4 min-[725px]:grid-cols-5 min-[860px]:grid-cols-6 min-[1000px]:grid-cols-7 min-[1145px]:grid-cols-8">
           {notes &&
             notes.map((notes) => (
               <div
                 key={notes._id}
                 id={notes._id}
-                className="card w-[120px] h-fit overflow-hidden border border-[#9f9f9f] hover:border-[#ffffff] relative rounded-2xl bg-[#303030]"
+                className="card w-[120px] scale-[1.1] sm:scale-[1] h-fit overflow-hidden border border-[#9f9f9f] hover:border-[#ffffff] relative rounded-xl sm:rounded-2xl bg-[#303030]"
               >
                 <div className="flex justify-between items-center px-3.5 w-full h-fit py-[8px]">
                   <h1
