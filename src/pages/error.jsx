@@ -14,7 +14,7 @@ function error() {
         </div>
         <img
           className="w-[300px] h-fit rounded-md"
-          src="src/assets/error/error.webp"
+          src="/images/error.webp"
           alt="error"
         />
         <h1 className="text-[#e5e5e5] text-[15px]">

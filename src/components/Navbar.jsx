@@ -33,7 +33,7 @@ function Navbar() {
       <div className="w-full h-fit relative flex items-center justify-between">
         <img
           className="w-[80px] sm:w-[100px] aspect-square object-cover"
-          src="src/assets/static/images/Logo.png"
+          src="/images/Logo.png"
           alt="Logo"
         />
 
@@ -65,7 +65,7 @@ function Navbar() {
               setOpen((state) => !state);
             }}
             className="w-[37px] cursor-pointer h-[37px] rounded-full object-cover"
-            src="src/assets/profile/profile.jpg"
+            src="/images/profile.jpg"
             alt="Profile"
           />
         </div>
