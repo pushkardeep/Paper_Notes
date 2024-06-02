@@ -8,9 +8,11 @@ import Loader from "../components/Loader.jsx";
 import { toogleCreateWindow } from "../Redux/slices/userInterface.js";
 import { useDispatch, useSelector } from "react-redux";
 import { profile } from "../services/operations";
+import { useNavigate } from "react-router-dom";
 
 function notes() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const token = localStorage.getItem("token");
   const createOpen = useSelector((state) => state.ui.createWindowOpen);
   const editOpen = useSelector((state) => state.ui.editWindowOpen);
@@ -19,7 +21,7 @@ function notes() {
   const notes = useSelector((state) => state.notes.notes);
 
   useEffect(() => {
-    profile(dispatch, token);
+    profile(dispatch, token, navigate);
   }, []);
 
   return (

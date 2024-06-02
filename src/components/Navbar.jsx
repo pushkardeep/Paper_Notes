@@ -18,13 +18,13 @@ function Navbar() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await searchNote(search, dispatch, token);
+    await searchNote(search, dispatch, token, navigate);
     navigate(`/notes?search=${search}`);
   };
 
   useEffect(() => {
     !searchQuery
-      ? getNotes(dispatch, token)
+      ? getNotes(dispatch, token, navigate)
       : searchNote(searchQuery, dispatch, token);
   }, [searchQuery]);
 

@@ -3,15 +3,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { toogleEdit } from "../Redux/slices/userInterface";
 import { setEditNoteData } from "../Redux/slices/notes";
 import { updateNotes } from "../services/operations";
+import { useNavigate } from "react-router-dom";
 
 function Edit() {
   const token = localStorage.getItem("token");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const noteData = useSelector((state) => state.notes.setEditData);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    updateNotes(noteData, dispatch, token);
+    updateNotes(noteData, dispatch, token, navigate);
   };
 
   return (

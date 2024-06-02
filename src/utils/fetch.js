@@ -16,6 +16,6 @@ export const fetch = async (formData, method, endpoint, token) => {
     });
     return data.data;
   } catch (error) {
-    console.log("you have axios error");
+    console.log(error);
   }
 };

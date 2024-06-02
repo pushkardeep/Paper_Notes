@@ -4,10 +4,12 @@ import { toogleDelete } from "../Redux/slices/userInterface";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteNotes } from "../services/operations/index";
 import { useGSAP } from "@gsap/react";
+import { useNavigate } from "react-router-dom";
 
 function Delete() {
   const dispatch = useDispatch();
   const deleleRef = useRef();
+  const navigate = useNavigate()
   const token = localStorage.getItem("token");
   const cardID = useSelector((state) => state.notes.deleteID);
 
@@ -31,7 +33,7 @@ function Delete() {
   };
 
   const handleClick = () => {
-    deleteNotes(dispatch, token, cardID);
+    deleteNotes(dispatch, token, cardID, navigate);
   };
 
   return (

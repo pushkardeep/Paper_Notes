@@ -8,43 +8,46 @@ import {
   editNote,
 } from "../../Redux/slices/notes";
 import {
-  toogleCreateWindow,
   toogleDelete,
   toogleEdit,
   toogleLoading,
 } from "../../Redux/slices/userInterface";
 
-const profile = async (dispatch, token) => {
+const profile = async (dispatch, token, navigate) => {
   try {
     dispatch(toogleLoading());
     const data = await fetch(null, "POST", endpoints.PROFILE_API, token);
     if (data.success) {
       dispatch(toogleLoading());
       dispatch(setuser(data.user));
+    } else if (data.success === false) {
+      dispatch(toogleLoading());
+      navigate("/error");
     }
   } catch (error) {
     dispatch(toogleLoading());
-    console.log("profile error");
+    navigate("/error");
   }
 };
 
-const getNotes = async (dispatch, token) => {
+const getNotes = async (dispatch, token, navigate) => {
   try {
     dispatch(toogleLoading());
     const data = await fetch(null, "POST", endpoints.GET_NOTES_API, token);
     if (data.success) {
       dispatch(toogleLoading());
       dispatch(setNotes(data.notes));
-    } else {
+    } else if (data.success === false) {
       dispatch(toogleLoading());
-      console.log("you have some internal server error");
+      navigate("/error");
     }
   } catch (error) {
-    console.log("you have error in fetching notes");
+    dispatch(toogleLoading());
+    navigate("/error");
   }
 };
 
-const createNotes = async (formData, dispatch, token) => {
+const createNotes = async (formData, dispatch, token, navigate) => {
   try {
     dispatch(toogleLoading());
     const data = await fetch(
@@ -58,14 +61,17 @@ const createNotes = async (formData, dispatch, token) => {
       dispatch(toogleLoading());
       dispatch(addNotes(data.newNote));
       return true;
+    } else if (data.success === false) {
+      dispatch(toogleLoading());
+      navigate("/error");
     }
   } catch (error) {
     dispatch(toogleLoading());
-    console.log("you have a error in creating notes", error);
+    navigate("/error");
   }
 };
 
-const deleteNotes = async (dispatch, token, cardID) => {
+const deleteNotes = async (dispatch, token, cardID, navigate) => {
   try {
     dispatch(toogleLoading());
     const data = await fetch(
@@ -78,14 +84,17 @@ const deleteNotes = async (dispatch, token, cardID) => {
       dispatch(toogleDelete());
       dispatch(toogleLoading());
       dispatch(deleteNote(data.deletedNote));
+    } else if (data.success === false) {
+      dispatch(toogleLoading());
+      navigate("/error");
     }
   } catch (error) {
     dispatch(toogleLoading());
-    console.log(error);
+    navigate("/error");
   }
 };
 
-const updateNotes = async (updatedData, dispatch, token) => {
+const updateNotes = async (updatedData, dispatch, token, navigate) => {
   try {
     dispatch(toogleLoading());
     const data = await fetch(
@@ -99,14 +108,17 @@ const updateNotes = async (updatedData, dispatch, token) => {
       dispatch(toogleEdit());
       dispatch(toogleLoading());
       dispatch(editNote(data.updatedNote));
+    } else if (data.success === false) {
+      dispatch(toogleLoading());
+      navigate("/error");
     }
   } catch (error) {
     dispatch(toogleLoading());
-    console.log("you have error in updating notes");
+    navigate("/error");
   }
 };
 
-const searchNote = async (search, dispatch, token) => {
+const searchNote = async (search, dispatch, token, navigate) => {
   try {
     dispatch(toogleLoading());
     const data = await fetch(
@@ -119,10 +131,13 @@ const searchNote = async (search, dispatch, token) => {
     if (data.success) {
       dispatch(toogleLoading());
       dispatch(setNotes(data.notes));
+    } else if (data.success === false) {
+      dispatch(toogleLoading());
+      navigate("/error");
     }
   } catch (error) {
     dispatch(toogleLoading());
-    console.log("you have error in searching note");
+    navigate("/error");
   }
 };
 

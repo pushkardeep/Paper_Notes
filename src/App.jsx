@@ -5,6 +5,7 @@ import LogIn from "./pages/logIn";
 import SignUp from "./pages/signUp";
 import Protected from "./components/Protected";
 import OpenRoute from "./components/OpenRoute";
+import Error from "./pages/error";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
             </OpenRoute>
           }
         />
+        <Route path="/error" element={<Error />} />
       </Routes>
     </BrowserRouter>
   );

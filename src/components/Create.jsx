@@ -1,13 +1,15 @@
 import React, { useRef, useState } from "react";
+import gsap from "gsap";
 import { createNotes } from "../services/operations";
 import { useDispatch } from "react-redux";
 import { toogleCreateWindow } from "../Redux/slices/userInterface";
 import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
+import { useNavigate } from "react-router-dom";
 
 function createWindow() {
   const createRef = useRef();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
   const [title, setTitle] = useState("");
@@ -39,7 +41,7 @@ function createWindow() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const result = await createNotes(noteData, dispatch, token);
+    const result = await createNotes(noteData, dispatch, token, navigate);
     if (result) {
       onUnMount();
     }
