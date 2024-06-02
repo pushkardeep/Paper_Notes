@@ -1,15 +1,26 @@
-import React from "react";
+import React, { useRef } from "react";
+import gsap from "gsap";
 import { useDispatch, useSelector } from "react-redux";
 import { toogleEdit } from "../Redux/slices/userInterface";
 import { setEditNoteData } from "../Redux/slices/notes";
 import { updateNotes } from "../services/operations";
 import { useNavigate } from "react-router-dom";
+import { useGSAP } from "@gsap/react";
 
 function Edit() {
   const token = localStorage.getItem("token");
+  const editRef = useRef();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const noteData = useSelector((state) => state.notes.setEditData);
+
+  useGSAP(() => {
+    gsap.from(editRef.current, {
+      opacity: 0,
+      scale: 0,
+      duration: 0.4,
+    });
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,7 +30,10 @@ function Edit() {
   return (
     <>
       <>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[100vh] w-full z-20 flex justify-center items-center backdrop-blur-[8px] bg-[#2323233b] sm:px-10">
+        <div
+          ref={editRef}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[100vh] w-full z-20 flex justify-center items-center backdrop-blur-[8px] bg-[#2323233b] sm:px-10"
+        >
           <div className="h-[90%] w-[95%] flex flex-col items-center justify-center sm:w-[800px] bg-[#0e0e0e]/75 border border-[#aeaeae] rounded-xl px-8">
             <h1 className="mx-auto w-fit h-[8%] flex items-center text-white text-[25px] font-semibold">
               Edit Note Name
