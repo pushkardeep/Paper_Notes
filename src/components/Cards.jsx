@@ -45,27 +45,22 @@ function Cards() {
 
   return (
     <>
-      <div className="w-full h-fit overflow-hidden relative">
+      <div className="w-full h-[100vh] overflow-hidden relative py-5 overflow-y-auto ">
         {notes && notes.length === 0 && (
           <h1 className="text-[#575757] text-[18px] font-semibold text-center mt-44">
             You don't have any Pages.
           </h1>
         )}
 
-        {notes && notes.length > 0 && (
-          <h1 className="text-white text-[25px] font-semibold text-center">
-            Pages
-          </h1>
-        )}
-
-        <div className="grid min-h-0 w-fit auto-rows-auto py-7 gap-6 sm:gap-3 px-5 sm:px-2 max-h-[70vh] mx-auto overflow-y-auto min-[350px]:grid-cols-2 min-[510px]:grid-cols-3 min-[635px]:grid-cols-4 min-[725px]:grid-cols-5 min-[860px]:grid-cols-6 min-[1000px]:grid-cols-7 min-[1145px]:grid-cols-8">
+        <div className="grid mt-20 w-fit auto-rows-auto gap-3 px-4 py-5 mx-auto min-[330px]:grid-cols-2 min-[485px]:grid-cols-3 min-[635px]:grid-cols-4 min-[800px]:grid-cols-5 min-[940px]:grid-cols-6 min-[1100px]:grid-cols-7">
           {notes &&
             notes.map((notes) => (
               <div
                 key={notes._id}
                 id={notes._id}
-                className="card w-[120px] scale-[1.1] sm:scale-[1] h-fit overflow-hidden border border-[#9f9f9f] hover:border-[#ffffff] relative rounded-xl sm:rounded-2xl bg-[#303030]"
+                className="card w-[145px] backdrop-blur-md rounded-2xl h-fit overflow-hidden border border-[#9f9f9f] hover:border-[#ffffff] relative bg-[#303030]"
               >
+                {/* title  */}
                 <div className="flex justify-between items-center px-3.5 w-full h-fit py-[8px]">
                   <h1
                     onClick={() => {
@@ -87,17 +82,22 @@ function Cards() {
                   </span>
                 </div>
 
-                <div
-                  onClick={() => {
-                    onRead(notes);
-                    dispatch(toogleRead());
-                  }}
-                  id="textArea"
-                  className="w-full cursor-pointer min-h-fit max-h-[55px] overflow-hidden px-3.5 text-[11px] text-[#d4d4d4] font-medium line-clamp-3"
-                >
-                  {notes.text}
+                {/* text  */}
+                <div className="w-full h-[70px] overflow-hidden px-3.5">
+                  <div
+                    onClick={() => {
+                      onRead(notes);
+                      dispatch(toogleRead());
+                    }}
+                    id="textArea"
+                    className="w-full cursor-pointer h-full overflow-hidden text-[11px] text-[#d4d4d4] font-medium"
+                  >
+                    {notes.text}
+                  </div>
                 </div>
-                <div className="w-full mt-2 px-3 bg-[#676767af] h-fit py-[1px] flex justify-between items center">
+
+                {/* date  */}
+                <div className="w-full mt-2 px-3.5 bg-[#676767af] h-fit py-[1.5px] flex justify-between items center">
                   <h1
                     onClick={() => {
                       onRead(notes);

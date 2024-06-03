@@ -26,22 +26,24 @@ function notes() {
 
   return (
     <>
-      <div className="relative h-[100vh] w-[100%] px-5 py-2 overflow-hidden">
-        <Navbar />
-        {notes ? <Cards /> : <Loader />}
-        {createOpen && <CreateWindow />}
-        {readingOpen && <Reader />}
-        {editOpen && <Edit />}
-        {isLoading && <Loader />}
-        <div
-          onClick={() => {
-            dispatch(toogleCreateWindow());
-          }}
-          className="w-[45px] cursor-pointer aspect-square rounded-full bg-[#fff] hover:bg-[#cfcfcf] flex justify-center items-center absolute bottom-[5%] right-[5%]"
-        >
-          <span className="material-symbols-outlined text-[#1f1f1f] text-[30px] font-semibold">
-            add
-          </span>
+      <div className="relative w-full h-fit overflow-hidden">
+        <div className="relative h-[100vh] w-[100%] overflow-hidden">
+          <Navbar />
+          {notes ? <Cards /> : <Loader />}
+          {createOpen && <CreateWindow />}
+          {readingOpen && <Reader />}
+          {editOpen && <Edit />}
+          {isLoading && <Loader />}
+          <div
+            onClick={() => {
+              dispatch(toogleCreateWindow());
+            }}
+            className="w-[45px] cursor-pointer aspect-square rounded-full bg-[#fff] hover:bg-[#cfcfcf] flex justify-center items-center absolute bottom-[5%] right-[5%]"
+          >
+            <span className="material-symbols-outlined text-[#1f1f1f] text-[30px] font-semibold">
+              add
+            </span>
+          </div>
         </div>
       </div>
     </>

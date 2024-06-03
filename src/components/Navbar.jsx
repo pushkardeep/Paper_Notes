@@ -30,7 +30,7 @@ function Navbar() {
 
   return (
     <>
-      <div className="w-full h-fit relative flex items-center justify-between">
+      <div className="w-full h-fit flex items-center justify-between fixed top-0 left-0 px-3 sm:px-5 py-3 z-50">
         <img
           className="w-[80px] sm:w-[100px] aspect-square object-cover"
           src="/images/Logo.png"
@@ -45,7 +45,7 @@ function Navbar() {
             <input
               type="text"
               name="Search"
-              className="border bg-transparent focus:outline-none border-[#b5b5b5] focus:border-[#ffffff] hover:border-[#ffffff] rounded-full w-full text-white placeholder:text-white text-[12px] font-medium py-2 px-4"
+              className="border backdrop-blur-md bg-transparent focus:outline-none border-[#b5b5b5] focus:border-[#ffffff] hover:border-[#ffffff] rounded-full w-full text-white placeholder:text-white text-[12px] font-medium py-2 px-4"
               placeholder="Search pages"
               value={searchQuery ? searchQuery : search}
               onChange={(e) => {
