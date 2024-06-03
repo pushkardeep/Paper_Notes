@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 function notes() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const width = window.innerHeight;
   const token = localStorage.getItem("token");
   const createOpen = useSelector((state) => state.ui.createWindowOpen);
   const editOpen = useSelector((state) => state.ui.editWindowOpen);
@@ -26,7 +27,11 @@ function notes() {
 
   return (
     <>
-      <div className="relative h-[100vh] w-[100%] px-5 py-2 overflow-hidden">
+      <div
+        className={`relative h-[${JSON.stringify(
+          width
+        )}px] border-2 w-[100%] px-5 py-2 overflow-hidden`}
+      >
         <Navbar />
         {notes ? <Cards /> : <Loader />}
         {createOpen && <CreateWindow />}
