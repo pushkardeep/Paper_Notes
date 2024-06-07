@@ -45,14 +45,14 @@ function Cards() {
 
   return (
     <>
-      <div className="w-full h-[100vh] overflow-hidden relative py-5 overflow-y-auto ">
+      <div className="w-full h-[80vh] overflow-hidden relative overflow-y-auto">
         {notes && notes.length === 0 && (
           <h1 className="text-[#575757] text-[18px] font-semibold text-center mt-44">
             You don't have any Pages.
           </h1>
         )}
 
-        <div className="px-2 py-4 min-h-fit max-h-[80vh] overflow-hidden overflow-y-auto grid grid-cols-2 place-items-center gap-2">
+        <div className="px-2 py-2 border-2 h-fit w-fit mx-auto grid place-items-center gap-2 min-[360px]:grid-cols-2">
           {notes &&
             notes.map((notes) => (
               <div
