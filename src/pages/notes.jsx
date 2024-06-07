@@ -17,7 +17,7 @@ function notes() {
   const readingOpen = useSelector((state) => state.ui.readingWindowOpen);
   const notes = useSelector((state) => state.notes.notes);
   const userData = useSelector((state) => state.user);
-  const isLoading = useSelector((state) => state.isLoading);
+  const isLoading = useSelector((state) => state.ui.isLoading);
 
   useEffect(() => {
     profile(dispatch, token, navigate);
