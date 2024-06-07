@@ -11,34 +11,26 @@ import { toogleDelete, toogleLoading } from "../../Redux/slices/userInterface";
 
 const profile = async (dispatch, token, navigate) => {
   try {
-    dispatch(toogleLoading());
     const data = await fetch(null, "POST", endpoints.PROFILE_API, token);
     if (data.success) {
-      dispatch(toogleLoading());
       dispatch(setuser(data.user));
     } else if (data.success === false) {
-      dispatch(toogleLoading());
       navigate("/error");
     }
   } catch (error) {
-    dispatch(toogleLoading());
     navigate("/error");
   }
 };
 
 const getNotes = async (dispatch, token, navigate) => {
   try {
-    dispatch(toogleLoading());
     const data = await fetch(null, "POST", endpoints.GET_NOTES_API, token);
     if (data.success) {
-      dispatch(toogleLoading());
       dispatch(setNotes(data.notes));
     } else if (data.success === false) {
-      dispatch(toogleLoading());
       navigate("/error");
     }
   } catch (error) {
-    dispatch(toogleLoading());
     navigate("/error");
   }
 };
