@@ -6,10 +6,12 @@ import SignUp from "./pages/signUp";
 import Protected from "./components/Protected";
 import OpenRoute from "./components/OpenRoute";
 import Error from "./pages/error";
+import BGImage from "./components/BGImage";
 
 function App() {
   return (
     <BrowserRouter>
+      <BGImage />
       <Routes>
         <Route index element={<Navigate to={"/notes"} />} />
         <Route

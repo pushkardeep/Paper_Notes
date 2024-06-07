@@ -30,44 +30,46 @@ function Navbar() {
 
   return (
     <>
-      <div className="w-full h-fit flex items-center justify-between fixed top-0 left-0 px-3 sm:px-5 py-3 z-50">
+      <div className="w-full h-fit px-8 py-4 relative">
+        {/* logo  */}
         <img
-          className="w-[80px] sm:w-[100px] aspect-square object-cover"
+          className="hidden sm:inline-block w-[80px] sm:w-[100px] aspect-square object-cover"
           src="/images/Logo.png"
           alt="Logo"
         />
 
-        <div className="w-[60%] h-fit overflow-hidden relative gap-3 sm:gap-0 flex justify-between items-center min-[270px]:w-[200px] sm:w-[300px]">
+        <div className="w-full h-fit flex flex-col-reverse justify-center items-end gap-1">
           <form
             onSubmit={handleSubmit}
-            className="w-[80%] relative h-fit overflow-hidden"
+            className="w-full h-fit relative overflow-hidden"
           >
             <input
               type="text"
               name="Search"
-              className="border backdrop-blur-md bg-transparent focus:outline-none border-[#b5b5b5] focus:border-[#ffffff] hover:border-[#ffffff] rounded-full w-full text-white placeholder:text-white text-[12px] font-medium py-2 px-4"
-              placeholder="Search pages"
+              className="w-full h-fit bg-[#1F1F1F] px-12 py-3 rounded-full text-[#777777] placeholder:text-[#777777] text-[14px] font-medium focus:outline-none"
+              placeholder="Search Notes"
               value={searchQuery ? searchQuery : search}
               onChange={(e) => {
                 setSearch(e.target.value);
               }}
             />
-            <button className="h-[90%] absolute translate-x-[-98%] left-[98%] sm:left-[99%] sm:translate-x-[-99%] top-[50%] translate-y-[-50%] flex justify-center items-center aspect-square rounded-full bg-[#4c4c4c]">
-              <span className="material-symbols-outlined scale-[.8] text-white">
+            <button className="absolute top-3 left-3.5">
+              <span className="material-symbols-outlined text-[21px] font-medium text-[#777777]">
                 search
               </span>
             </button>
           </form>
 
-          {/* profile icon  */}
-          <img
+          {/* profile bar  */}
+
+          <span
             onClick={() => {
               setOpen((state) => !state);
             }}
-            className="w-[37px] cursor-pointer h-[37px] rounded-full object-cover"
-            src="/images/profile.jpg"
-            alt="Profile"
-          />
+            class="material-symbols-outlined text-[#3D3D3D] text-[30px] w-fit h-fit cursor-pointer"
+          >
+            manage_accounts
+          </span>
         </div>
 
         {open && <Profilebar />}

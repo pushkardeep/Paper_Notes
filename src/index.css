@@ -13,7 +13,11 @@ body {
   height: 100%;
   width: 100%;
   user-select: none;
-  background-color: #1f1f1f;
+  background-color: #070707;
+}
+
+#BGImage{
+  filter: brightness(.15);
 }
 
 ::-webkit-scrollbar {

@@ -52,22 +52,22 @@ function Cards() {
           </h1>
         )}
 
-        <div className="grid mt-20 w-fit auto-rows-auto gap-3 px-4 py-5 mx-auto min-[330px]:grid-cols-2 min-[485px]:grid-cols-3 min-[635px]:grid-cols-4 min-[800px]:grid-cols-5 min-[940px]:grid-cols-6 min-[1100px]:grid-cols-7">
+        <div className="px-2 py-4 min-h-fit max-h-[80vh] overflow-hidden overflow-y-auto grid grid-cols-2 place-items-center gap-2">
           {notes &&
             notes.map((notes) => (
               <div
                 key={notes._id}
                 id={notes._id}
-                className="card w-[145px] backdrop-blur-md rounded-2xl h-fit overflow-hidden border border-[#9f9f9f] hover:border-[#ffffff] relative bg-[#303030]"
+                className="card relative w-[140px] backdrop-blur-sm bg-[#29292992] rounded-2xl overflow-hidden px-4 py-2 flex flex-col justify-center items-start gap-2"
               >
                 {/* title  */}
-                <div className="flex justify-between items-center px-3.5 w-full h-fit py-[8px]">
+                <div className="w-full h-fit flex justify-between items-center">
                   <h1
                     onClick={() => {
                       onRead(notes);
                       dispatch(toogleRead());
                     }}
-                    className="text-white cursor-pointer text-[13px] font-medium w-[65%] overflow-hidden whitespace-nowrap"
+                    className="text-[#EAEAEA] cursor-pointer text-[15px] font-semibold w-[70%] overflow-hidden whitespace-nowrap"
                   >
                     {notes.title}
                   </h1>
@@ -76,46 +76,35 @@ function Cards() {
                       onDelete(notes);
                       dispatch(toogleDelete());
                     }}
-                    className="material-symbols-outlined text-[#b8b8b8] scale-[.85] w-fit cursor-pointer"
+                    className="material-symbols-outlined text-[#A7A7A7] text-[25px] w-fit cursor-pointer"
                   >
                     more_vert
                   </span>
                 </div>
 
                 {/* text  */}
-                <div className="w-full h-[70px] overflow-hidden px-3.5">
-                  <div
-                    onClick={() => {
-                      onRead(notes);
-                      dispatch(toogleRead());
-                    }}
-                    id="textArea"
-                    className="w-full cursor-pointer h-full overflow-hidden text-[11px] text-[#d4d4d4] font-medium"
-                  >
-                    {notes.text}
-                  </div>
+                <div
+                  onClick={() => {
+                    onRead(notes);
+                    dispatch(toogleRead());
+                  }}
+                  id="textArea"
+                  className="h-[77px] w-[75%] cursor-pointer overflow-hidden text-[12px] text-[#A7A7A7] font-semibold"
+                >
+                  {notes.text}
                 </div>
 
                 {/* date  */}
-                <div className="w-full mt-2 px-3.5 bg-[#676767af] h-fit py-[1.5px] flex justify-between items center">
+                <div className="w-full flex justify-start items-center mt-2">
                   <h1
                     onClick={() => {
                       onRead(notes);
                       dispatch(toogleRead());
                     }}
-                    className="text-[10px] cursor-pointer font-semibold flex items-center text-white"
+                    className="text-[10px] cursor-pointer font-medium flex items-center text-[#7b7b7b]"
                   >
                     {notes.date.split("T")[0]}
                   </h1>
-                  <span
-                    onClick={() => {
-                      onEdit(notes);
-                      dispatch(toogleEdit());
-                    }}
-                    className="material-symbols-outlined scale-[.8] cursor-pointer text-[#bababa]"
-                  >
-                    edit_note
-                  </span>
                 </div>
 
                 {deleteBar && cardID === notes._id && <Delete />}
