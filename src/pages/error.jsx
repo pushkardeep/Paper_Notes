@@ -3,7 +3,7 @@ import React from "react";
 function error() {
   return (
     <>
-      <div className="w-full h-[100vh] overflow-hidden flex flex-col justify-center items-center gap-4">
+      <div className="w-full h-[100vh] relative overflow-hidden flex flex-col justify-center items-center gap-4 z-50">
         <div className="w-full h-fit">
           <h1 className="text-white w-full text-center text-[25px] font-medium">
             Something went wrong !

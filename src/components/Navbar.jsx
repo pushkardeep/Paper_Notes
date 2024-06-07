@@ -5,16 +5,16 @@ import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 
 function Navbar() {
-  const token = localStorage.getItem("token");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const [search, setSearch] = useState("");
-  const [open, setOpen] = useState(false);
-
   const location = useLocation();
+  const token = localStorage.getItem("token");
+
   const searchParams = new URLSearchParams(location.search);
   const searchQuery = searchParams.get("search");
+
+  const [search, setSearch] = useState(searchQuery ? searchQuery : "");
+  const [open, setOpen] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,6 +26,7 @@ function Navbar() {
     !searchQuery
       ? getNotes(dispatch, token, navigate)
       : searchNote(searchQuery, dispatch, token);
+    setSearch(searchQuery ? searchQuery : "");
   }, [searchQuery]);
 
   return (
@@ -48,7 +49,7 @@ function Navbar() {
               name="Search"
               className="w-full h-fit bg-[#1F1F1F] px-12 py-3.5 rounded-full text-[#777777] placeholder:text-[#777777] text-[14px] font-medium focus:outline-none"
               placeholder="Search Notes"
-              value={searchQuery ? searchQuery : search}
+              value={search}
               onChange={(e) => {
                 setSearch(e.target.value);
               }}
@@ -59,8 +60,6 @@ function Navbar() {
               </span>
             </button>
           </form>
-
-          {/* profile bar  */}
 
           <span
             onClick={() => {
