@@ -16,7 +16,6 @@ function Delete() {
   useGSAP(() => {
     gsap.from(deleleRef.current, {
       top: "-100%",
-      opacity: 0,
       duration: 0.4,
     });
   });
@@ -24,7 +23,6 @@ function Delete() {
   const onUnMount = () => {
     gsap.to(deleleRef.current, {
       top: "-100%",
-      opacity: 0,
       duration: 0.4,
       onComplete: () => {
         dispatch(toogleDelete());
@@ -40,7 +38,7 @@ function Delete() {
     <>
       <div
         ref={deleleRef}
-        className="absolute top-0 left-0 w-full h-[100%] bg-[#181818ad] backdrop-blur-sm flex flex-col justify-center items-center px-3.5 gap-10 z-50"
+        className="absolute top-0 left-0 w-full h-[100%] bg-[#111111ac] backdrop-blur-[10px] flex flex-col justify-center items-center px-3.5 gap-10 z-50"
       >
         <div className="w-full h-fit flex justify-end cursor-pointer">
           <span
