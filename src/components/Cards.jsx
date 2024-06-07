@@ -52,7 +52,7 @@ function Cards() {
           </h1>
         )}
 
-        <div className="px-2 py-2 border-2 h-fit w-fit mx-auto grid place-items-center gap-2 min-[360px]:grid-cols-2">
+        <div className="px-2 py-2 h-fit w-fit mx-auto grid place-items-center gap-2 min-[360px]:grid-cols-2 min-[525px]:grid-cols-3 min-[695px]:grid-cols-4 min-[875px]:grid-cols-5 min-[1050px]:grid-cols-6 min-[1220px]:grid-cols-7">
           {notes &&
             notes.map((notes) => (
               <div

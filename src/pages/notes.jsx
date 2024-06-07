@@ -26,7 +26,7 @@ function notes() {
 
   return (
     <>
-      <div className="relative w-full h-fit overflow-hidden">
+      <div className="relative w-full h-[100vh] overflow-hidden">
         <div className="relative h-[100vh] w-[100%] overflow-hidden">
           <Navbar />
           {notes ? <Cards /> : <Loader />}
