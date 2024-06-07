@@ -16,6 +16,7 @@ function notes() {
   const createOpen = useSelector((state) => state.ui.createWindowOpen);
   const readingOpen = useSelector((state) => state.ui.readingWindowOpen);
   const notes = useSelector((state) => state.notes.notes);
+  const userData = useSelector((state) => state.user);
 
   useEffect(() => {
     profile(dispatch, token, navigate);
@@ -26,7 +27,11 @@ function notes() {
       <div className="relative w-full h-[100vh] overflow-hidden">
         <div className="relative h-[100vh] w-[100%] overflow-hidden">
           <Navbar />
-          {notes ? <Cards /> : <Loader />}
+          {notes && userData.username && userData.email ? (
+            <Cards />
+          ) : (
+            <Loader />
+          )}
           {createOpen && <CreateWindow />}
           {readingOpen && <Reader />}
           <div
