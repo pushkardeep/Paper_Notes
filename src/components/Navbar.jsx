@@ -30,7 +30,7 @@ function Navbar() {
 
   return (
     <>
-      <div className="w-full h-fit px-8 py-4 relative">
+      <div className="w-full h-fit px-8 py-4 relative sm:flex justify-between items-center">
         {/* logo  */}
         <img
           className="hidden sm:inline-block w-[80px] sm:w-[100px] aspect-square object-cover"
@@ -38,22 +38,22 @@ function Navbar() {
           alt="Logo"
         />
 
-        <div className="w-full h-fit flex flex-col-reverse justify-center items-end gap-1">
+        <div className="w-full h-fit flex flex-col-reverse justify-center items-end gap-1 sm:flex-row sm:items-center sm:gap-6 sm:w-[500px]">
           <form
             onSubmit={handleSubmit}
-            className="w-full h-fit relative overflow-hidden"
+            className="w-full sm:w-[85%] h-fit relative overflow-hidden"
           >
             <input
               type="text"
               name="Search"
-              className="w-full h-fit bg-[#1F1F1F] px-12 py-3 rounded-full text-[#777777] placeholder:text-[#777777] text-[14px] font-medium focus:outline-none"
+              className="w-full h-fit bg-[#1F1F1F] px-12 py-3.5 rounded-full text-[#777777] placeholder:text-[#777777] text-[14px] font-medium focus:outline-none"
               placeholder="Search Notes"
               value={searchQuery ? searchQuery : search}
               onChange={(e) => {
                 setSearch(e.target.value);
               }}
             />
-            <button className="absolute top-3 left-3.5">
+            <button className="absolute top-3.5 left-4">
               <span className="material-symbols-outlined text-[21px] font-medium text-[#777777]">
                 search
               </span>
@@ -66,7 +66,7 @@ function Navbar() {
             onClick={() => {
               setOpen((state) => !state);
             }}
-            class="material-symbols-outlined text-[#3D3D3D] text-[30px] w-fit h-fit cursor-pointer"
+            class="material-symbols-outlined text-[#3D3D3D] text-[30px] sm:text-[35px] w-fit h-fit cursor-pointer"
           >
             manage_accounts
           </span>

@@ -58,7 +58,7 @@ function Cards() {
               <div
                 key={notes._id}
                 id={notes._id}
-                className="card relative w-[140px] backdrop-blur-sm bg-[#29292992] rounded-2xl overflow-hidden px-4 py-2 flex flex-col justify-center items-start gap-2"
+                className="card relative w-[165px] backdrop-blur-sm bg-[#29292992] rounded-2xl overflow-hidden px-6 py-4 flex flex-col justify-center items-start gap-2"
               >
                 {/* title  */}
                 <div className="w-full h-fit flex justify-between items-center">
@@ -67,7 +67,7 @@ function Cards() {
                       onRead(notes);
                       dispatch(toogleRead());
                     }}
-                    className="text-[#EAEAEA] cursor-pointer text-[15px] font-semibold w-[70%] overflow-hidden whitespace-nowrap"
+                    className="text-[#EAEAEA] cursor-pointer text-[16.5px] font-semibold w-[70%] overflow-hidden whitespace-nowrap"
                   >
                     {notes.title}
                   </h1>
@@ -76,7 +76,7 @@ function Cards() {
                       onDelete(notes);
                       dispatch(toogleDelete());
                     }}
-                    className="material-symbols-outlined text-[#A7A7A7] text-[25px] w-fit cursor-pointer"
+                    className="material-symbols-outlined text-[#979797] text-[26.5px] w-fit cursor-pointer"
                   >
                     more_vert
                   </span>
@@ -89,7 +89,7 @@ function Cards() {
                     dispatch(toogleRead());
                   }}
                   id="textArea"
-                  className="h-[77px] w-[75%] cursor-pointer overflow-hidden text-[12px] text-[#A7A7A7] font-semibold"
+                  className="h-[83px] w-[75%] cursor-pointer overflow-hidden text-[13px] text-[#A7A7A7] font-semibold overflow-hidden"
                 >
                   {notes.text}
                 </div>
