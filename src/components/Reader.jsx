@@ -45,7 +45,7 @@ function ReadingWindow() {
       <>
         <div
           ref={readerRef}
-          className="w-full h-[100vh] absolute top-0 left-0 flex flex-col items-center justify-center z-50 bg-[#070707b9] backdrop-blur-md"
+          className="w-full h-[100vh] absolute top-0 left-0 flex flex-col items-center justify-center z-30 bg-[#070707b9] backdrop-blur-md"
         >
           <form
             onSubmit={handleSunmit}
