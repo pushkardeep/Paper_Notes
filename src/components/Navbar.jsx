@@ -66,7 +66,7 @@ function Navbar() {
             onClick={() => {
               setOpen((state) => !state);
             }}
-            class="material-symbols-outlined text-[#3D3D3D] text-[30px] sm:text-[35px] w-fit h-fit cursor-pointer"
+            className="material-symbols-outlined text-[#3D3D3D] text-[30px] sm:text-[35px] w-fit h-fit cursor-pointer"
           >
             manage_accounts
           </span>

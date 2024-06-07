@@ -7,6 +7,14 @@ import { useGSAP } from "@gsap/react";
 import { useNavigate } from "react-router-dom";
 
 function createWindow() {
+  const currentDate = new Date();
+
+  var year = currentDate.getFullYear();
+  var month = currentDate.getMonth() + 1;
+  var day = currentDate.getDate();
+
+  const date = `${day}-${month}-${year}`;
+
   const createRef = useRef();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -22,16 +30,14 @@ function createWindow() {
 
   useGSAP(() => {
     gsap.from(createRef.current, {
-      opacity: 0,
-      scale: 0,
+      left: "100%",
       duration: 0.4,
     });
   });
 
   const onUnMount = () => {
     gsap.to(createRef.current, {
-      opacity: 0,
-      scale: 0,
+      left: "100%",
       duration: 0.4,
       onComplete: () => {
         dispatch(toogleCreateWindow());
@@ -48,59 +54,61 @@ function createWindow() {
   };
 
   return (
-      <>
-        <div
-          ref={createRef}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[100vh] w-full z-20 flex justify-center items-center backdrop-blur-[8px] bg-[#2323233b] sm:px-10"
+    <>
+      <div
+        ref={createRef}
+        className="w-full h-[100vh] absolute top-0 left-0 flex flex-col items-center justify-center z-50 bg-[#070707b9] backdrop-blur-md"
+      >
+        <form
+          onSubmit={handleSubmit}
+          className="w-full h-full flex flex-col justify-start items-start px-16 py-8 gap-4"
         >
-          <div className="h-[90%] w-[95%] flex flex-col items-center justify-center sm:w-[800px] bg-[#0e0e0e]/75 border border-[#aeaeae] rounded-xl px-8">
-            <h1 className="mx-auto w-fit h-[8%] flex items-center text-white text-[25px] font-semibold">
-              Add a Note
-            </h1>
-            <form
-              onSubmit={handleSubmit}
-              className="w-full h-[70%] flex flex-col items-center justify-center gap-3 mt-3"
+          <div className="w-full h-fit flex items-center justify-between text-white">
+            <span
+              onClick={onUnMount}
+              className="material-symbols-outlined text-[40px] cursor-pointer"
             >
-              <input
-                className="bg-transparent border-[#a2a2a2] border px-4 py-1 rounded-md w-[75%] min-[450px]:w-[250px] text-white"
-                required
-                type="text"
-                name="title"
-                placeholder="Add Title"
-                value={title}
-                onChange={(e) => {
-                  setTitle(e.target.value);
-                }}
-              />
-              <textarea
-                className="bg-transparent text-white w-full h-[80%] border resize-none border-[#a2a2a2] px-5 py-3 rounded-xl text-[14px] font-medium"
-                required
-                type="text"
-                name="textarea"
-                placeholder="Note there"
-                value={text}
-                onChange={(e) => {
-                  setText(e.target.value);
-                }}
-              ></textarea>
-              <div className="w-full flex justify-end gap-2 items-center">
-                <h1
-                  onClick={onUnMount}
-                  className="text-[#000000] cursor-pointer bg-white px-2 py-1 font-semibold rounded-md"
-                >
-                  Cancel
-                </h1>
-                <button
-                  type="submit"
-                  className="text-[#ffffff] cursor-pointer bg-green-600 px-3.5 py-1 font-semibold rounded-md"
-                >
-                  Save
-                </button>
-              </div>
-            </form>
+              undo
+            </span>
+
+            <button
+              type="submit"
+              className="text-[#ffffff] cursor-pointer bg-[#FAA401] px-4 py-1.5 font-semibold rounded-lg"
+            >
+              Save
+            </button>
           </div>
-        </div>
-      </>
+
+          <input
+            className="w-fit bg-transparent text-[28px] font-medium text-[#e3e3e3] focus:outline-none placeholder:text-[#4B4B4B] mt-4"
+            required
+            type="text"
+            name="Title"
+            placeholder="Title"
+            value={title}
+            onChange={(e) => {
+              setTitle(e.target.value);
+            }}
+          />
+
+          <h1 className="w-full text-left text-[#474747] text-[12px] font-medium">
+            {date}
+          </h1>
+
+          <textarea
+            className="w-full h-[75vh] bg-transparent text-[16px] resize-none text-[#e3e3e3] focus:outline-none placeholder:text-[#d7d7d7] mt-4"
+            required
+            type="text"
+            name="textarea"
+            placeholder="Note there"
+            value={text}
+            onChange={(e) => {
+              setText(e.target.value);
+            }}
+          ></textarea>
+        </form>
+      </div>
+    </>
   );
 }
 
