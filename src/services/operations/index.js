@@ -7,11 +7,7 @@ import {
   deleteNote,
   editNote,
 } from "../../Redux/slices/notes";
-import {
-  toogleDelete,
-  toogleEdit,
-  toogleLoading,
-} from "../../Redux/slices/userInterface";
+import { toogleDelete, toogleLoading } from "../../Redux/slices/userInterface";
 
 const profile = async (dispatch, token, navigate) => {
   try {

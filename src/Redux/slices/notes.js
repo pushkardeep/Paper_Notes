@@ -4,13 +4,11 @@ const noteSlice = createSlice({
   name: "notes",
   initialState: {
     notes: undefined,
+    // storing note id to delete
     deleteID: "",
+    // storing edited data 
     setEditData: {
       id: "",
-      title: "",
-      text: "",
-    },
-    readingData: {
       title: "",
       text: "",
     },
@@ -41,10 +39,6 @@ const noteSlice = createSlice({
       });
     },
 
-    setReaderData: (state, action) => {
-      state.readingData = { ...state.readingData, ...action.payload };
-    },
-
     setDeleteNoteID: (state, action) => {
       state.deleteID = action.payload;
     },
@@ -61,7 +55,6 @@ export const {
   addNotes,
   deleteNote,
   editNote,
-  setReaderData,
   setDeleteNoteID,
   setEditNoteData,
 } = noteSlice.actions;

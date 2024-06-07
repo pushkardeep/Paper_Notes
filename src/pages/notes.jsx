@@ -2,22 +2,19 @@ import React, { useEffect } from "react";
 import Navbar from "../components/Navbar";
 import CreateWindow from "../components/Create.jsx";
 import Cards from "../components/Cards.jsx";
-import Edit from "../components/Edit.jsx";
 import Reader from "../components/Reader.jsx";
 import Loader from "../components/Loader.jsx";
-import { toogleCreateWindow } from "../Redux/slices/userInterface.js";
-import { useDispatch, useSelector } from "react-redux";
 import { profile } from "../services/operations";
 import { useNavigate } from "react-router-dom";
+import { toogleCreateWindow } from "../Redux/slices/userInterface.js";
+import { useDispatch, useSelector } from "react-redux";
 
 function notes() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
   const createOpen = useSelector((state) => state.ui.createWindowOpen);
-  const editOpen = useSelector((state) => state.ui.editWindowOpen);
   const readingOpen = useSelector((state) => state.ui.readingWindowOpen);
-  const isLoading = useSelector((state) => state.ui.isLoading);
   const notes = useSelector((state) => state.notes.notes);
 
   useEffect(() => {
@@ -32,8 +29,6 @@ function notes() {
           {notes ? <Cards /> : <Loader />}
           {createOpen && <CreateWindow />}
           {readingOpen && <Reader />}
-          {editOpen && <Edit />}
-          {isLoading && <Loader />}
           <div
             onClick={() => {
               dispatch(toogleCreateWindow());

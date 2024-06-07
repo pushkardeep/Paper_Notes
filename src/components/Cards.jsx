@@ -1,16 +1,8 @@
 import React from "react";
 import Delete from "./Delete";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  setDeleteNoteID,
-  setEditNoteData,
-  setReaderData,
-} from "../Redux/slices/notes";
-import {
-  toogleDelete,
-  toogleEdit,
-  toogleRead,
-} from "../Redux/slices/userInterface";
+import { setDeleteNoteID, setEditNoteData } from "../Redux/slices/notes";
+import { toogleDelete, toogleRead } from "../Redux/slices/userInterface";
 
 function Cards() {
   const dispatch = useDispatch();
@@ -25,22 +17,14 @@ function Cards() {
     }
   };
 
-  const onEdit = (note) => {
+  const onRead = (note) => {
     const data = {
       id: note._id,
       title: note.title,
       text: note.text,
-    };
-    dispatch(setEditNoteData(data));
-  };
-
-  const onRead = (note) => {
-    const data = {
-      title: note.title,
-      text: note.text,
       date: note.date,
     };
-    dispatch(setReaderData(data));
+    dispatch(setEditNoteData(data));
   };
 
   return (

@@ -4,7 +4,6 @@ const userInterface = createSlice({
   name: "userInterface",
   initialState: {
     createWindowOpen: false,
-    editWindowOpen: false,
     readingWindowOpen: false,
     isLoading: false,
     deleteBar: false,
@@ -16,9 +15,6 @@ const userInterface = createSlice({
     toogleDelete: (state) => {
       state.deleteBar = !state.deleteBar;
     },
-    toogleEdit: (state) => {
-      state.editWindowOpen = !state.editWindowOpen;
-    },
     toogleRead: (state) => {
       state.readingWindowOpen = !state.readingWindowOpen;
     },
@@ -28,11 +24,6 @@ const userInterface = createSlice({
   },
 });
 
-export const {
-  toogleCreateWindow,
-  toogleDelete,
-  toogleEdit,
-  toogleRead,
-  toogleLoading,
-} = userInterface.actions;
+export const { toogleCreateWindow, toogleDelete, toogleRead, toogleLoading } =
+  userInterface.actions;
 export default userInterface.reducer;
