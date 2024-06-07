@@ -89,7 +89,7 @@ function Cards() {
                     dispatch(toogleRead());
                   }}
                   id="textArea"
-                  className="h-[83px] w-[75%] cursor-pointer overflow-hidden text-[13px] text-[#A7A7A7] font-semibold overflow-hidden"
+                  className="h-[81px] w-[75%] cursor-pointer text-[13px] text-[#A7A7A7] font-semibold overflow-hidden"
                 >
                   {notes.text}
                 </div>
