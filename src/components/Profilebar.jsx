@@ -12,8 +12,7 @@ function Profilebar() {
     <>
       <div className="absolute right-5 top-12 sm:top-24 z-20 bg-[#32323287] rounded-xl py-3 px-4 flex flex-col justify-center items-start backdrop-blur-md w-[220px]">
         <h1 className="w-fit text-start text-white font-medium text-[24px] whitespace-nowrap">
-          Pushkardeep
-          {/* {data.username} */}
+          {data.username}
         </h1>
         <h1 className="w-fit text-start text-[#C7C7C7] font-normal text-[13px] whitespace-nowrap">
           {data.email}
@@ -21,7 +20,7 @@ function Profilebar() {
 
         {/* logout  */}
         <h1
-          className="bg-[#D9D9D9] text-[#000] px-5 h-fit w-fit py-2 rounded-full text-[11px] font-semibold cursor-pointer mt-3"
+          className="bg-[#D9D9D9] text-[#000] px-5 h-fit w-fit py-2 rounded-full text-[11px] font-semibold cursor-pointer mt-4 hover:bg-[#cbcbcb]"
           onClick={() => {
             localStorage.removeItem("token");
             dispatch(removeUser());
