@@ -79,7 +79,7 @@ We welcome contributions! Fork the repository and submit a pull request for any 
 ## 📧 Contact
 
 - **Email:** just.pushkardeep@gmail.com
-- **GitHub:** [@yourusername](https://github.com/yourusername)
+- **GitHub:** [@pushkardeep](https://github.com/Pushkardeep)
 
 ## 📜 License
 
