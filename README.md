@@ -81,6 +81,4 @@ We welcome contributions! Fork the repository and submit a pull request for any 
 - **Email:** just.pushkardeep@gmail.com
 - **GitHub:** [@pushkardeep](https://github.com/Pushkardeep)
 
-## 📜 License
 
-Licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
