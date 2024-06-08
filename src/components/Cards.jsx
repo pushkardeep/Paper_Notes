@@ -1,16 +1,18 @@
 import React from "react";
+import Delete from "./Delete";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setDeleteNoteID, setEditNoteData } from "../Redux/slices/notes";
 import { toogleDelete, toogleRead } from "../Redux/slices/userInterface";
-import Delete from "./Delete";
-import { useNavigate } from "react-router-dom";
 
 function Cards() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const location = useLocation();
   const notes = useSelector((state) => state.notes.notes);
   const deleteBar = useSelector((state) => state.ui.deleteBar);
   const cardID = useSelector((state) => state.notes.deleteID);
+  const searchParams = new URLSearchParams(location.search);
+  const searchQuery = searchParams.get("search");
 
   const handleDelete = (noteId) => {
     dispatch(setDeleteNoteID(noteId));
@@ -34,7 +36,9 @@ function Cards() {
       <div className="w-full h-[80vh] overflow-hidden relative overflow-y-auto">
         {notes && notes.length === 0 ? (
           <h1 className="text-[#575757] text-[18px] font-semibold text-center mt-44">
-            You don't have any Pages.
+            {searchQuery
+              ? `Not found for "${searchQuery}"`
+              : "You don't have any Notes."}
           </h1>
         ) : (
           <div className="px-2 py-2 h-fit w-fit mx-auto grid place-items-center gap-2 min-[360px]:grid-cols-2 min-[525px]:grid-cols-3 min-[695px]:grid-cols-4 min-[875px]:grid-cols-5 min-[1050px]:grid-cols-6 min-[1220px]:grid-cols-7">

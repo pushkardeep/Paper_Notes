@@ -32,17 +32,17 @@ function Notes() {
         {createOpen && <CreateWindow />}
         {readingOpen && <Reader />}
         {isLoading && <Loader />}
-        <div
-          onClick={() => dispatch(toogleCreateWindow())}
-          className="sm:flex flex-col justify-center items-center absolute bottom-[10%] right-[5%] sm:gap-5 w-fit h-fit"
-        >
+        <div className="sm:flex flex-col justify-center items-center absolute bottom-[10%] right-[5%] sm:gap-5 w-fit h-fit">
           <span
             onClick={() => navigate("/notes")}
             className="material-symbols-outlined hidden sm:flex justify-center items-center w-fit text-[#FAA401] bg-[#fff] hover:bg-[#dedede] px-2.5 aspect-square rounded-full text-[25px] cursor-pointer"
           >
             home
           </span>
-          <span className="material-symbols-outlined w-[60px] cursor-pointer aspect-square rounded-full  flex justify-center items-center  bg-[#FAA401] hover:bg-[#faa301ef]  text-[#ffffff] text-[30px] font-medium">
+          <span
+            onClick={() => dispatch(toogleCreateWindow())}
+            className="material-symbols-outlined w-[60px] cursor-pointer aspect-square rounded-full  flex justify-center items-center  bg-[#FAA401] hover:bg-[#faa301ef]  text-[#ffffff] text-[30px] font-medium"
+          >
             add
           </span>
         </div>
