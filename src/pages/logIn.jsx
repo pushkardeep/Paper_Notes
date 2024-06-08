@@ -40,24 +40,24 @@ function logIn() {
 
   return (
     <>
-      <div className="min-h-[100vh] w-full relative flex justify-center items-center py-4 px-5">
+      <div className="h-screen w-full flex justify-center items-center relative z-20">
         {/* singn in card  */}
-        <div className="w-full min-[345px]:w-[300px] h-fit overflow-hidden border border-[#3f3f3f] bg-[#272727] rounded-xl py-5 px-3">
-          <h1 className="w-full text-center font-medium text-xl text-white">
+        <div className="w-[300px] h-fit relative overflow-hidden">
+          <h1 className="ww-full text-center font-medium text-3xl text-white">
             Welcome Back
           </h1>
-          <h1 className="w-full text-center text-[#9a9a9a] text-[13px]">
+          <h1 className="w-full text-center text-[#b5b5b5] text-[14px]">
             To Page
           </h1>
 
           {/* form  */}
-          <div className="w-full mt-4">
+          <div className="w-full mt-6">
             <form
               onSubmit={handleSubmit}
-              className="w-full h-fit flex justify-center items-center gap-2 flex-col px-5"
+              className="w-full h-fit flex justify-center items-center gap-2 flex-col"
             >
               <input
-                className="w-full py-2 px-4 rounded-full bg-transparent border border-[#8d8d8d] text-white font-medium text-[14px]"
+                className="w-full h-fit focus:outline-none text-white font-normal bg-[#1f1f1fcc] backdrop-blur-sm px-8 rounded-full py-2.5 placeholder:text-[13px] placeholder:text-[#777777] placeholder:font-medium"
                 type="email"
                 placeholder="E-mail"
                 required
@@ -67,7 +67,7 @@ function logIn() {
                 }}
               />
               <input
-                className="w-full py-2 px-4 rounded-full bg-transparent border border-[#8d8d8d] text-white font-medium text-[14px]"
+                className="w-full h-fit focus:outline-none text-white font-normal bg-[#1f1f1fcc] backdrop-blur-sm px-8 rounded-full py-2.5 placeholder:text-[13px] placeholder:text-[#777777] placeholder:font-medium"
                 type="password"
                 placeholder="Password"
                 required
@@ -76,17 +76,17 @@ function logIn() {
                   setPassword(e.target.value);
                 }}
               />
-              <button className="bg-[#707070] px-4 py-1.5 font-medium text-[13px] text-white rounded-full">
+              <button className="bg-[#FAA401] hover:bg-[#faa301ee] px-6 py-2 text-[12px] text-white rounded-full mt-1">
                 Log In
               </button>
             </form>
           </div>
           {/* redirects to signUp  */}
-          <div className="flex justify-center items-center gap-2 mt-3">
+          <div className="flex justify-center items-center gap-4 mt-3">
             <h1 className="text-white text-[12.5px]">Create Account</h1>
             <Link
               to="/sign_up"
-              className="bg-[#707070] px-3 py-1 font-medium text-[13px] text-white rounded-full"
+              className="bg-[#FAA401] hover:bg-[#faa301ee] px-5 py-2 text-[10px] text-white rounded-full mt-1"
             >
               Create
             </Link>
