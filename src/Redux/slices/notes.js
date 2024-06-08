@@ -6,7 +6,7 @@ const noteSlice = createSlice({
     notes: undefined,
     // storing note id to delete
     deleteID: "",
-    // storing edited data 
+    // storing edited data
     setEditData: {
       id: "",
       title: "",

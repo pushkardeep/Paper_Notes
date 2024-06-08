@@ -16,8 +16,8 @@ body {
   background-color: #070707;
 }
 
-#BGImage{
-  filter: brightness(.15);
+#BGImage {
+  filter: brightness(0.15);
 }
 
 ::-webkit-scrollbar {

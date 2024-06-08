@@ -3,31 +3,31 @@ import { endpoints } from "../apis";
 
 const sign_up = async (formData, navigate) => {
   try {
-    const data = await fetch(formData, "POST", endpoints.SIGN_UP_API);
-    if (data.success) {
-      localStorage.setItem("token", data.token);
+    const response = await fetch(formData, "POST", endpoints.SIGN_UP_API);
+    if (response.success) {
+      localStorage.setItem("token", response.token);
       navigate("/notes");
     } else {
-      return "Email has already exists! Please try a different one.";
+      return "Email already exists! Please try a different one.";
     }
   } catch (error) {
-    console.log("sign_up error occurs");
-    return "Internal server error";
+    console.error("Error during sign-up:", error);
+    return "Internal server error.";
   }
 };
 
 const log_in = async (formData, navigate) => {
   try {
-    const data = await fetch(formData, "POST", endpoints.LOG_IN_API);
-    if (data.success) {
-      localStorage.setItem("token", data.token);
+    const response = await fetch(formData, "POST", endpoints.LOG_IN_API);
+    if (response.success) {
+      localStorage.setItem("token", response.token);
       navigate("/notes");
     } else {
       return "Email or password is incorrect!";
     }
   } catch (error) {
-    console.log("you have logIn error");
-    return "Internal server error";
+    console.error("Error during log-in:", error);
+    return "Internal server error.";
   }
 };
 

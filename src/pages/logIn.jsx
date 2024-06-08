@@ -6,42 +6,40 @@ import { toogleLoading } from "../Redux/slices/userInterface";
 import { useDispatch, useSelector } from "react-redux";
 import Flash from "../components/Flash";
 
-function logIn() {
+function LogIn() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isLoading = useSelector((state) => state.ui.isLoading);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
 
   const [flash, setFlash] = useState(null);
 
-  const userData = {
-    email,
-    password,
-  };
-
-  const resetForm = () => {
-    setEmail("");
-    setPassword("");
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(toogleLoading());
-    const message = await log_in(userData, navigate);
+    dispatch(toogleLoading(true));
+    const message = await log_in(formData, navigate);
+    dispatch(toogleLoading(false));
     if (message) {
-      dispatch(toogleLoading());
       setFlash(message);
     } else {
-      dispatch(toogleLoading());
-      resetForm();
+      setFormData({ email: "", password: "" });
     }
   };
 
   return (
     <>
       <div className="h-screen w-full flex justify-center items-center relative z-20">
-        {/* singn in card  */}
         <div className="w-[300px] h-fit relative overflow-hidden">
           <h1 className="ww-full text-center font-medium text-3xl text-white">
             Welcome Back
@@ -50,7 +48,6 @@ function logIn() {
             To Page
           </h1>
 
-          {/* form  */}
           <div className="w-full mt-6">
             <form
               onSubmit={handleSubmit}
@@ -59,29 +56,27 @@ function logIn() {
               <input
                 className="w-full h-fit focus:outline-none text-white font-normal bg-[#1f1f1fcc] backdrop-blur-sm px-8 rounded-full py-2.5 placeholder:text-[13px] placeholder:text-[#777777] placeholder:font-medium"
                 type="email"
+                name="email"
                 placeholder="E-mail"
                 required
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
+                value={formData.email}
+                onChange={handleChange}
               />
               <input
                 className="w-full h-fit focus:outline-none text-white font-normal bg-[#1f1f1fcc] backdrop-blur-sm px-8 rounded-full py-2.5 placeholder:text-[13px] placeholder:text-[#777777] placeholder:font-medium"
                 type="password"
+                name="password"
                 placeholder="Password"
                 required
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
+                value={formData.password}
+                onChange={handleChange}
               />
               <button className="bg-[#FAA401] hover:bg-[#faa301ee] px-6 py-2 text-[12px] text-white rounded-full mt-1">
                 Log In
               </button>
             </form>
           </div>
-          {/* redirects to signUp  */}
+
           <div className="flex justify-center items-center gap-4 mt-3">
             <h1 className="text-white text-[12.5px]">Create Account</h1>
             <Link
@@ -99,4 +94,4 @@ function logIn() {
   );
 }
 
-export default logIn;
+export default LogIn;

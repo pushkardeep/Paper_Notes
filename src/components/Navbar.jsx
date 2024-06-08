@@ -1,79 +1,79 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Profilebar from "./Profilebar";
-import { getNotes, searchNote } from "../services/operations";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
+import { userData } from "../services/operations";
 
 function Navbar() {
+  const searchRef = useRef();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   const token = localStorage.getItem("token");
 
-  const searchParams = new URLSearchParams(location.search);
-  const searchQuery = searchParams.get("search");
-
-  const [search, setSearch] = useState(searchQuery ? searchQuery : "");
   const [open, setOpen] = useState(false);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    await searchNote(search, dispatch, token, navigate);
-    navigate(`/notes?search=${search}`);
-  };
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
-    !searchQuery
-      ? getNotes(dispatch, token, navigate)
-      : searchNote(searchQuery, dispatch, token);
-    setSearch(searchQuery ? searchQuery : "");
-  }, [searchQuery]);
+    const searchQuery = new URLSearchParams(location.search).get("search");
+    setSearch(searchQuery || "");
+    userData(dispatch, navigate, token, searchQuery);
+  }, [location.search]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate(`/notes?search=${search}`);
+    userData(dispatch, navigate, token, search);
+  };
 
   return (
-    <>
-      <div className="w-full h-fit px-8 py-4 relative sm:flex justify-between items-center">
-        {/* logo  */}
-        <img
-          className="hidden sm:inline-block w-[80px] sm:w-[100px] aspect-square object-cover"
-          src="/images/Logo.png"
-          alt="Logo"
-        />
-
-        <div className="w-full h-fit flex flex-col-reverse justify-center items-end gap-1 sm:flex-row sm:items-center sm:gap-6 sm:w-[500px]">
-          <form
-            onSubmit={handleSubmit}
-            className="w-full sm:w-[85%] h-fit relative overflow-hidden"
-          >
-            <input
-              type="text"
-              name="Search"
-              className="w-full h-fit bg-[#1F1F1F] px-12 py-3.5 rounded-full text-[#777777] placeholder:text-[#777777] text-[14px] font-medium focus:outline-none"
-              placeholder="Search Notes"
-              value={search}
-              onChange={(e) => {
-                setSearch(e.target.value);
-              }}
-            />
-            <button className="absolute top-3.5 left-4">
-              <span className="material-symbols-outlined text-[21px] font-medium text-[#777777]">
-                search
-              </span>
-            </button>
-          </form>
-
-          <span
+    <div className="w-full h-fit px-8 py-4 relative sm:flex justify-between items-center">
+      <img
+        className="hidden sm:inline-block w-[80px] sm:w-[100px] aspect-square object-cover"
+        src="/images/Logo.png"
+        alt="Logo"
+      />
+      <div className="w-full sm:w-[500px] h-fit flex flex-col-reverse sm:flex-row justify-center items-end sm:items-center gap-1 sm:gap-6">
+        <form
+          onSubmit={handleSubmit}
+          className="w-full sm:w-[85%] h-fit relative overflow-hidden"
+        >
+          <input
+            ref={searchRef}
+            type="text"
+            className="w-full bg-[#1F1F1F] px-12 py-3.5 rounded-full text-[#777777] placeholder:text-[#777777] text-[14px] font-medium focus:outline-none"
+            placeholder="Search Notes"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          <div
             onClick={() => {
-              setOpen((state) => !state);
+              searchRef.current.focus();
             }}
-            className="material-symbols-outlined text-[#3D3D3D] text-[30px] sm:text-[35px] w-fit h-fit cursor-pointer"
+            className="absolute top-3.5 left-4 cursor-pointer"
+          >
+            <span className="material-symbols-outlined text-[21px] font-medium text-[#777777]">
+              search
+            </span>
+          </div>
+        </form>
+        <div className="w-full flex justify-between items-center sm:w-fit sm:flex-none">
+          <span
+            onClick={() => navigate("/notes")}
+            className="material-symbols-outlined text-[#3D3D3D] text-[30px] sm:text-[35px] cursor-pointer sm:hidden"
+          >
+            home
+          </span>
+          <span
+            onClick={() => setOpen((prevOpen) => !prevOpen)}
+            className="material-symbols-outlined text-[#3D3D3D] text-[30px] sm:text-[35px] cursor-pointer"
           >
             manage_accounts
           </span>
         </div>
-
-        {open && <Profilebar />}
       </div>
-    </>
+      {open && <Profilebar />}
+    </div>
   );
 }
 

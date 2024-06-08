@@ -1,43 +1,44 @@
-import { setuser } from "../../Redux/slices/user";
 import { fetch } from "../../utils/fetch";
+import { setuser } from "../../Redux/slices/user";
 import { endpoints } from "../apis";
+import { toogleDelete, toogleLoading } from "../../Redux/slices/userInterface";
 import {
   addNotes,
   setNotes,
   deleteNote,
   editNote,
 } from "../../Redux/slices/notes";
-import { toogleDelete, toogleLoading } from "../../Redux/slices/userInterface";
 
-const profile = async (dispatch, token, navigate) => {
+const userData = async (dispatch, navigate, token, search) => {
   try {
-    const data = await fetch(null, "POST", endpoints.PROFILE_API, token);
-    if (data.success) {
-      dispatch(setuser(data.user));
-    } else if (data.success === false) {
+    dispatch(toogleLoading(true));
+    const userProfile = await fetch(null, "POST", endpoints.PROFILE_API, token);
+    const userNotes = search
+      ? await fetch(
+          { search: search },
+          "POST",
+          endpoints.SEARCH_NOTE_API,
+          token
+        )
+      : await fetch(null, "POST", endpoints.GET_NOTES_API, token);
+
+    if (userProfile.success && userNotes.success) {
+      dispatch(setuser(userProfile.user));
+      dispatch(setNotes(userNotes.notes));
+    } else {
+      localStorage.removeItem("token");
       navigate("/error");
     }
   } catch (error) {
     navigate("/error");
-  }
-};
-
-const getNotes = async (dispatch, token, navigate) => {
-  try {
-    const data = await fetch(null, "POST", endpoints.GET_NOTES_API, token);
-    if (data.success) {
-      dispatch(setNotes(data.notes));
-    } else if (data.success === false) {
-      navigate("/error");
-    }
-  } catch (error) {
-    navigate("/error");
+  } finally {
+    dispatch(toogleLoading(false));
   }
 };
 
 const createNotes = async (formData, dispatch, token, navigate) => {
   try {
-    dispatch(toogleLoading());
+    dispatch(toogleLoading(true));
     const data = await fetch(
       formData,
       "POST",
@@ -46,23 +47,23 @@ const createNotes = async (formData, dispatch, token, navigate) => {
     );
 
     if (data.success) {
-      dispatch(toogleLoading());
       dispatch(addNotes(data.newNote));
       return true;
-    } else if (data.success === false) {
-      dispatch(toogleLoading());
+    } else {
+      localStorage.removeItem("token");
       navigate("/error");
-      return false;
     }
   } catch (error) {
-    dispatch(toogleLoading());
     navigate("/error");
+    return false;
+  } finally {
+    dispatch(toogleLoading(false));
   }
 };
 
 const deleteNotes = async (dispatch, token, cardID, navigate) => {
   try {
-    dispatch(toogleLoading());
+    dispatch(toogleLoading(true));
     const data = await fetch(
       { id: cardID },
       "POST",
@@ -71,21 +72,21 @@ const deleteNotes = async (dispatch, token, cardID, navigate) => {
     );
     if (data.success) {
       dispatch(toogleDelete());
-      dispatch(toogleLoading());
       dispatch(deleteNote(data.deletedNote));
-    } else if (data.success === false) {
-      dispatch(toogleLoading());
+    } else {
+      localStorage.removeItem("token");
       navigate("/error");
     }
   } catch (error) {
-    dispatch(toogleLoading());
     navigate("/error");
+  } finally {
+    dispatch(toogleLoading(false));
   }
 };
 
 const updateNotes = async (updatedData, dispatch, token, navigate) => {
   try {
-    dispatch(toogleLoading());
+    dispatch(toogleLoading(true));
     const data = await fetch(
       updatedData,
       "POST",
@@ -94,40 +95,17 @@ const updateNotes = async (updatedData, dispatch, token, navigate) => {
     );
 
     if (data.success) {
-      dispatch(toogleLoading());
       dispatch(editNote(data.updatedNote));
       return true;
-    } else if (data.success === false) {
-      dispatch(toogleLoading());
+    } else {
+      localStorage.removeItem("token");
       navigate("/error");
     }
   } catch (error) {
-    dispatch(toogleLoading());
     navigate("/error");
+  } finally {
+    dispatch(toogleLoading(false));
   }
 };
 
-const searchNote = async (search, dispatch, token, navigate) => {
-  try {
-    dispatch(toogleLoading());
-    const data = await fetch(
-      { search: search },
-      "POST",
-      endpoints.SEARCH_NOTE_API,
-      token
-    );
-
-    if (data.success) {
-      dispatch(toogleLoading());
-      dispatch(setNotes(data.notes));
-    } else if (data.success === false) {
-      dispatch(toogleLoading());
-      navigate("/error");
-    }
-  } catch (error) {
-    dispatch(toogleLoading());
-    navigate("/error");
-  }
-};
-
-export { profile, createNotes, getNotes, deleteNotes, updateNotes, searchNote };
+export { userData, createNotes, deleteNotes, updateNotes };

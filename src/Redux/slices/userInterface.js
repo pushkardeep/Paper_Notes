@@ -18,8 +18,8 @@ const userInterface = createSlice({
     toogleRead: (state) => {
       state.readingWindowOpen = !state.readingWindowOpen;
     },
-    toogleLoading: (state) => {
-      state.isLoading = !state.isLoading;
+    toogleLoading: (state, action) => {
+      state.isLoading = action.payload;
     },
   },
 });
