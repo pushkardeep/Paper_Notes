@@ -9,7 +9,7 @@ function error() {
             Something went wrong !
           </h1>
           <h1 className="text-[#c9c9c9] w-full text-center text-[15px]">
-            or some server occurs!
+            or some server error occurs!
           </h1>
         </div>
         <img

@@ -10,29 +10,26 @@ function Profilebar() {
 
   return (
     <>
-      <div
-        className={`absolute py-2 px-2 overflow-hidden w-[135px] h-fit rounded-xl border border-[#616161] bg-[#2d2d2d]/50 backdrop-blur-sm top-[100%] right-[0] z-10`}
-      >
-        <h1 className="w-full text-start text-white font-medium text-[15px]">
-          {data.username}
+      <div className="absolute right-5 top-12 sm:top-24 z-20 bg-[#32323287] rounded-xl py-3 px-4 flex flex-col justify-center items-start backdrop-blur-md w-[220px]">
+        <h1 className="w-fit text-start text-white font-medium text-[24px] whitespace-nowrap">
+          Pushkardeep
+          {/* {data.username} */}
         </h1>
-        <h1 className="w-full text-start text-[#d2d2d2] font-normal text-[11px] line-clamp-1">
+        <h1 className="w-fit text-start text-[#C7C7C7] font-normal text-[13px] whitespace-nowrap">
           {data.email}
         </h1>
 
-        <div
+        {/* logout  */}
+        <h1
+          className="bg-[#D9D9D9] text-[#000] px-5 h-fit w-fit py-2 rounded-full text-[11px] font-semibold cursor-pointer mt-3"
           onClick={() => {
             localStorage.removeItem("token");
             dispatch(removeUser());
             navigate("/log_in");
           }}
-          className="flex mt-5 w-fit cursor-pointer justify-start items-center gap-[2px] font-semibold text-[13px] text-black bg-white px-2 py-1 rounded-md"
         >
-          <h1>Logout</h1>
-          <span className="material-symbols-outlined font-medium scale-[.8]">
-            logout
-          </span>
-        </div>
+          Log Out
+        </h1>
       </div>
     </>
   );
