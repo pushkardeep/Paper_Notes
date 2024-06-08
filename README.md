@@ -36,7 +36,7 @@ The interface is designed using Figma, focusing on simplicity, user experience, 
 
     ```bash
     git clone https://github.com/pushkardeep/paper_notes.git
-    cd paper-notes-frontend
+    cd paper_notes
     ```
 
 2. **Install dependencies:**
@@ -50,7 +50,7 @@ The interface is designed using Figma, focusing on simplicity, user experience, 
     Create a `.env` file in the root directory with the following content:
 
     ```env
-    REACT_APP_API_URL=http://localhost:5000
+    VITE_BASE_URL=yourbeckend
     ```
 
 4. **Start the development server:**
@@ -59,7 +59,7 @@ The interface is designed using Figma, focusing on simplicity, user experience, 
     npm start
     ```
 
-    The app should now be running at `http://localhost:3000`.
+    The app should now be running at `https://paper-notes-mocha.vercel.app/notes`.
 
 ## 📷 Screenshots
 
