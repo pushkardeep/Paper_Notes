@@ -35,7 +35,7 @@ The interface is designed using Figma, focusing on simplicity, user experience, 
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/yourusername/paper-notes-frontend.git
+    git clone https://github.com/pushkardeep/paper_notes.git
     cd paper-notes-frontend
     ```
 
