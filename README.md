@@ -56,7 +56,7 @@ The interface is designed using Figma, focusing on simplicity, user experience, 
 4. **Start the development server:**
 
     ```bash
-    npm start
+    npm run dev
     ```
 
     The app should now be running at `https://paper-notes-mocha.vercel.app/notes`.
@@ -74,7 +74,7 @@ The interface is designed using Figma, focusing on simplicity, user experience, 
 
 ## 🤝 Contributing
 
-We welcome contributions! Fork the repository and submit a pull request for any new features or improvements.
+I am welcome contributions! Fork the repository and submit a pull request for any new features or improvements.
 
 ## 📧 Contact
 
