@@ -63,14 +63,18 @@ The interface is designed using Figma, focusing on simplicity, user experience, 
 
 ## 📷 Screenshots
 
+## 👤 Register and LogIn
+
 ![Register and LogIn](public/readmeImages/register_&_logIn.jpeg)
-*Home page*
+## 🏠 Home page
 
 ![Home](public/readmeImages/home.jpeg)
-*Rich text editor*
+## 📝 Create and Update Notes
 
 ![Create and Update Notes](public/readmeImages/create_&_update.jpeg)
-*Search functionality*
+## 🔍 Search functionality and User Profile
+
+![Create and Update Notes](public/readmeImages/search_with_profile.jpeg)
 
 ## 🤝 Contributing
 
